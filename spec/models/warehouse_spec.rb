@@ -18,4 +18,8 @@ RSpec.describe Warehouse, type: :model do
   it 'is invalid with a duplicate code' do
     FactoryBot.build(:warehouse, wh_code: warehouse.wh_code).should_not be_valid
   end
+
+  it 'is invalid if wh_code length is < 4 or > 16' do
+    FactoryBot.build(:warehouse, wh_code: rand(3)).should_not be_valid
+  end
 end

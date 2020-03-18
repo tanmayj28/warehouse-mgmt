@@ -18,4 +18,8 @@ RSpec.describe Product, type: :model do
   it 'is invalid with a duplicate code' do
     FactoryBot.build(:product, sku_code: product.sku_code).should_not be_valid
   end
+
+  it 'is invalid if sku_code length is > 8' do
+    FactoryBot.build(:product, sku_code: rand(10**10)).should_not be_valid
+  end
 end
